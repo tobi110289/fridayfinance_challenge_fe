@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script setup>
 import SearchAndFilter from '@/components/SearchAndFilter.vue';
 import TransactionsTable from '@/components/TransactionsTable.vue';
 </script>
