@@ -1,16 +1,7 @@
 <script lang="ts" setup>
-const message = ref('Hello')
-const change = () => {
-  message.value = 'Goodbye'
-}</script>
+import Transactions from "@/pages/Transactions.vue"
+</script>
 
 <template>
-  <div>
-    <h1>{{ message }}</h1>
-    <button v-on:click="change">Goodbye</button>
-  </div>
+  <Transactions />
 </template>
-
-<style scoped>
-
-</style>

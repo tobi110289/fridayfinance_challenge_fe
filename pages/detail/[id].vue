@@ -1,4 +1,7 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+const route = useRoute()
+// const { data } = await useFetch(route.params.id)
+</script>
 
 <template>
   <div>

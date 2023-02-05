@@ -1,8 +1,16 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
-export default {
+import { defineNuxtConfig } from 'nuxt/config'
+
+export default defineNuxtConfig({
     typescript: {
         typeCheck: true,
         strict: true,
     },
-    buildModules: ['@nuxt/typescript-build']
-}
+    modules: ['@nuxtjs/apollo', '@nuxtjs/tailwindcss'],
+    apollo: {
+        clients: {
+            default: {
+                httpEndpoint: 'http://localhost:3007/graphql/',
+            }
+        }
+    }
+})

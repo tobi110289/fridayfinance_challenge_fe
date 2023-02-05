@@ -1,10 +1,11 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import SearchAndFilter from '@/components/SearchAndFilter.vue';
+import TransactionsTable from '@/components/TransactionsTable.vue';
+</script>
 
 <template>
   <div>
-    Page: transactions
-    <h1>TRANSACTIONS</h1>
+    <SearchAndFilter />
+    <TransactionsTable />
   </div>
 </template>
-
-<style scoped></style>
