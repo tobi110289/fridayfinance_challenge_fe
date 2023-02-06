@@ -34,23 +34,9 @@ const accountQueryScheme = gql`
   }
 }
 `
-const filteredByBank = gql`
-    query ($first: Int, $bank: String) {
-    getTransactions (first: $first, bank: $bank) {
-    id
-    reference
-    category {
-      name
-    }
-    date
-    amount
-    currency
-  }
-}
-`
-const filteredByAccount = gql`
-    query ($first: Int, $account: String) {
-    getTransactions (first: $first, account: $account) {
+const filterQuery = gql`
+    query ($first: Int, $account: String,$bank: String ) {
+    getTransactions (first: $first, account: $account, bank: $bank) {
     id
     reference
     category {
@@ -63,4 +49,5 @@ const filteredByAccount = gql`
 }
 `
 
-export { initialQuery, loadMoreQuery, accountQueryScheme, filteredByBank, filteredByAccount}
+
+export { initialQuery, loadMoreQuery, accountQueryScheme, filterQuery }

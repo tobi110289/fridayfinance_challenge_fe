@@ -1,15 +1,15 @@
 <script setup >
 
 const searchTerm = ref('')
-const { handleSearch, bankData, accountData, filterByBank, filterByAccount } = inject('searchbar')
+const { handleSearch, bankData, filteredQuery } = inject('searchbar')
 const uniqueBanks = ref([])
 const selectedBank = ref('')
 const uniqueAccounts = ref([])
 const selectedAccount = ref('')
 const startingMonth = ref('yyyy-mm')
 const endingMonth = ref('')
+
 watch(bankData, (accounts) => {
-    console.log(accounts)
     uniqueBanks.value = Array.from(new Set(accounts.map(account => account.bank)))
     uniqueAccounts.value = Array.from(new Set(accounts.map(account => account.name)))
 })
@@ -20,10 +20,12 @@ const handleSearchEvent = () => {
     searchTerm.value = ''
 }
 const handleBankFilter = (e) => {
-    filterByBank(e.target.value)
+    selectedBank.value = e.target.value
+    filteredQuery(selectedAccount.value, e.target.value)
 }
 const handleAccountFilter = (e) => {
-    filterByAccount(e.target.value)
+    selectedAccount.value = e.target.value
+    filteredQuery(e.target.value, selectedBank.value)
 }
 
 </script>
