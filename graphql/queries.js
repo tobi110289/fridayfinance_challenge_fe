@@ -35,8 +35,8 @@ const accountQueryScheme = gql`
 }
 `
 const filterQuery = gql`
-    query ($first: Int, $account: String,$bank: String, $startDate: String, $endDate: String) {
-    getTransactions (first: $first, account: $account, bank: $bank, startDate: $startDate, endDate: $endDate) {
+    query ($first: Int, $account: String,$bank: String, $startDate: String, $endDate: String, $reference: String, $category: String , $amount: Float) {
+    getTransactions (first: $first, account: $account, bank: $bank, startDate: $startDate, endDate: $endDate, reference: $reference, category: $category, amount: $amount) {
     id
     reference
     category {

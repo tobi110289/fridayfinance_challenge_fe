@@ -5,12 +5,18 @@ const transactionData = ref([])
 const accountData = ref([])
 const filterArguments = ref({})
 
-const handleSearch = (searchValue) => {
-  console.log(`search value: ${searchValue}`);
-  // Handle the API request here using the searchValue.
+const handleSearch = async (searchValue) => {
+  let searchResults = []
+  const categorySearch = await useAsyncQuery(filterQuery, { ...filterArguments.value, category: searchValue })
+  searchResults = [...categorySearch.data._rawValue.getTransactions]
+  const referenceSearch = await useAsyncQuery(filterQuery, { ...filterArguments.value, reference: searchValue })
+  searchResults = [...searchResults, ...referenceSearch.data._rawValue.getTransactions]
+  const amountSearch = await useAsyncQuery(filterQuery, { ...filterArguments.value, amount: +searchValue })
+  searchResults = [...searchResults, ...amountSearch.data._rawValue.getTransactions]
+  transactionData.value = searchResults
 }
-const filteredQuery = (selectedAccount, selectedBank, startDate, endDate) => {
-  const args = { first: transactionData.value.length ? transactionData.value.length : 20, account: selectedAccount, bank: selectedBank, startDate, endDate }
+const filteredQuery = (selectedAccount, selectedBank, startDate, endDate, reference, category) => {
+  const args = { first: transactionData.value.length ? transactionData.value.length : 20, account: selectedAccount, bank: selectedBank, startDate, endDate, reference, category, category }
   transactionQuery(filterQuery, args)
   filterArguments.value = args;
 }
@@ -22,6 +28,7 @@ const transactionQuery = async (query, arg) => {
   const { data } = await useAsyncQuery(query, arg)
   transactionData.value = data._rawValue.getTransactions
 }
+
 const accountQuery = async (query, arg) => {
   const { data } = await useAsyncQuery(query, arg)
   accountData.value = data._rawValue.getAccounts
