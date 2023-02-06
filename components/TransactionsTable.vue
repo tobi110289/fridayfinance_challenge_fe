@@ -42,9 +42,12 @@ const sortByDate = () => {
                         transaction.reference ?
                             transaction.reference : "No reference provided"
                     }}</td>
-                    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{
-                        transaction.category?.name
-                    }}</td>
+                    <td class="text-sm text-gray-900  font-normal px-6 py-4 whitespace-nowrap">
+                        <span class="p-3 rounded-md"
+                            :style="{ backgroundColor: transaction.category?.color ? '#' + transaction.category?.color : '#ebebeb' }">
+                            {{ transaction.category?.name? transaction.category?.name : "No category provided" }}
+                        </span>
+                    </td>
                     <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{
                         formatDateDDMMYY(transaction.date)
                     }}</td>

@@ -5,6 +5,7 @@ const initialQuery = gql`
       reference
       category {
         name
+        color
       }
       date
       amount
@@ -19,6 +20,7 @@ const loadMoreQuery = gql`
     reference
     category {
       name
+      color
     }
     date
     amount
@@ -41,6 +43,7 @@ const filterQuery = gql`
     reference
     category {
       name
+      color
     }
     date
     amount
