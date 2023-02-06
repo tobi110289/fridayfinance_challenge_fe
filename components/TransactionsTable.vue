@@ -1,11 +1,13 @@
 <script setup>
+import { formatDateDDMMYY } from '@/helpers/HelperFunctions';
 const { transactionData, loadMore } = inject("transactionData")
 const sortOrder = ref('asc');
 const sortedTransactions = computed(() => {
+    const formatToTimestamp = (date) => (new Date(date)).getTime();
     const transactions = transactionData.value;
     sortOrder.value === 'asc'
-        ? transactions.sort((a, b) => +a.date - +b.date)
-        : transactions.sort((a, b) => +b.date - +a.date);
+        ? transactions.sort((a, b) => formatToTimestamp(a.date) - formatToTimestamp(b.date))
+        : transactions.sort((a, b) => formatToTimestamp(b.date) - formatToTimestamp(a.date));
     return transactions;
 });
 
@@ -13,13 +15,6 @@ const sortByDate = () => {
     sortOrder.value = sortOrder.value === 'asc' ? 'desc' : 'asc';
 }
 
-const formatDate = (date) => {
-    return new Date(parseInt(date)).toLocaleDateString('en-GB', {
-        day: '2-digit',
-        month: '2-digit',
-        year: '2-digit'
-    });
-}
 </script>
 
 <template>
@@ -43,7 +38,7 @@ const formatDate = (date) => {
             <tr v-for="transaction in sortedTransactions" :key="transaction.id">
                 <td>{{ transaction.reference ? transaction.reference : "No reference provided" }}</td>
                 <td>{{ transaction.category?.name }}</td>
-                <td>{{ formatDate(transaction.date) }}</td>
+                <td>{{ formatDateDDMMYY(transaction.date) }}</td>
                 <td> {{ transaction.amount }} {{ transaction.currency }}</td>
             </tr>
         </tbody>

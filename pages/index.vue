@@ -3,14 +3,13 @@ import Transactions from "@/pages/Transactions.vue"
 import { loadMoreQuery, accountQueryScheme, filterQuery } from "@/graphql/queries"
 const transactionData = ref([])
 const bankData = ref([])
-const accountData = ref([])
 
 const handleSearch = (searchValue) => {
   console.log(`search value: ${searchValue}`);
   // Handle the API request here using the searchValue.
 }
-const filteredQuery = (selectedAccount, selectedBank) => {
-  transactionQuery(filterQuery, { first: 20, account: selectedAccount, bank: selectedBank })
+const filteredQuery = (selectedAccount, selectedBank, startDate, endDate) => {
+  transactionQuery(filterQuery, { first: 20, account: selectedAccount, bank: selectedBank, startDate, endDate})
 }
 const loadMore = () => {
   transactionQuery(loadMoreQuery, { first: transactionData.value.length + 20 })
