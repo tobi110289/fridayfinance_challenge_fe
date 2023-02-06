@@ -44,5 +44,5 @@ provide('searchbar', { handleSearch, accountData, filteredQuery })
 </script>
 
 <template>
-  <Transactions />
+    <Transactions />
 </template>

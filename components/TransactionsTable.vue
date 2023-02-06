@@ -18,30 +18,44 @@ const sortByDate = () => {
 </script>
 
 <template>
-    <table class="table-auto">
-        <thead>
-            <tr>
-                <th>Reference</th>
-                <th>Category</th>
-                <th @click="sortByDate">
-                    <template v-if="sortOrder === 'asc'">
-                        Date ↓
-                    </template>
-                    <template v-else-if="sortOrder === 'desc'">
-                        Date ↑
-                    </template>
-                </th>
-                <th>Amount</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr v-for="transaction in sortedTransactions" :key="transaction.id">
-                <td>{{ transaction.reference ? transaction.reference : "No reference provided" }}</td>
-                <td>{{ transaction.category?.name }}</td>
-                <td>{{ formatDateDDMMYY(transaction.date) }}</td>
-                <td> {{ transaction.amount }} {{ transaction.currency }}</td>
-            </tr>
-        </tbody>
-    </table>
-    <button @click="loadMore">⊕</button>
+    <div class="flex-grow overflow-auto w-10/12">
+        <table class="overflow-y-scroll relative w-full">
+            <thead class="bg-gray-50 top-0 sticky">
+                <tr>
+                    <th class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Reference</th>
+                    <th class="sticky text-sm font-medium text-gray-900 px-6 py-4 text-left">Category</th>
+                    <th class="sticky text-sm font-medium text-gray-900 px-6 py-4 text-left" @click="sortByDate">
+                        <template v-if="sortOrder === 'asc'">
+                            Date ↓
+                        </template>
+                        <template v-else-if="sortOrder === 'desc'">
+                            Date ↑
+                        </template>
+                    </th>
+                    <th class="sticky text-sm font-medium text-gray-900 px-6 py-4 text-right">Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100"
+                    v-for="transaction in sortedTransactions" :key="transaction.id">
+                    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{
+                        transaction.reference ?
+                            transaction.reference : "No reference provided"
+                    }}</td>
+                    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{
+                        transaction.category?.name
+                    }}</td>
+                    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{
+                        formatDateDDMMYY(transaction.date)
+                    }}</td>
+                    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap text-right"> {{
+                        transaction.amount
+                    }} {{ transaction.currency }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="flex justify-center">
+        <button class="text-xl text-gray-900 font-light px-6 py-4 whitespace-nowrap" @click="loadMore">⊕</button>
+    </div>
 </template>

@@ -44,27 +44,47 @@ const handleEndDateChange = (e) => {
 
 </script>
 <template>
-    <div>
-        <label for="search">Search</label>
-        <input id="search" v-model="searchTerm" type="text" @keyup.enter="handleSearchEvent"
-            placeholder="Search by bank, account, reference, category, date, amount, currency..." />
-        <label for="bank">Bank</label>
-        <select id="bank" v-model="selectedBank" @change="handleBankFilter">
-            <option value="" selected>No filter applied</option>
-            <option v-for="bank in uniqueBanks" :key="bank" :value="bank">{{ bank }}
-            </option>
-        </select>
-        <label for="account">Account</label>
-        <select id="account" v-model="selectedAccount" @change="handleAccountFilter">
-            <option value="" selected>No filter applied</option>
-            <option v-for="account in uniqueAccounts" :key="account" :value="account">{{ account }}
-            </option>
-        </select>
-        <label for="start">Starting month:</label>
-        <input type="month" id="start" name="starting-month" :value="selectedStartMonth" @change="handleStartDateChange"
-            placeholder="yyyy-mm" min="1980-01" max="2050-12">
-        <label for="start">Ending month:</label>
-        <input type="month" id="end" name="ending-month" :value="selectedEndMonth" @change="handleEndDateChange"
-            placeholder="yyyy-mm" min="1980-01" max="2050-12">
+    <div class="flex gap-4 px-6 w-10/12">
+        <div class="mb-3 flex-auto">
+            <label for="search"
+                class="form-label inline-block text-xs text-gray-700 font-light py-1 text-left">Search</label>
+            <input class="bg-gray-50 border border-gray-300 text-gray-400 font-light text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"  id="search" v-model="searchTerm" type="text" @keyup.enter="handleSearchEvent"
+                placeholder="Search by bank, account, reference, category, date, amount, currency..." />
+        </div>
+        <div lass="mb-3 w-1/8 flex-col">
+            <label for="bank"
+                class="form-label inline-block text-xs text-gray-700 font-light py-1 text-left">Bank</label>
+            <select
+                class="bg-gray-50 border border-gray-300 text-gray-400 font-light text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                id="bank" v-model="selectedBank" @change="handleBankFilter">
+                <option value="" selected>No filter applied</option>
+                <option v-for="bank in uniqueBanks" :key="bank" :value="bank">{{ bank }}
+                </option>
+            </select>
+        </div>
+        <div lass="mb-3 w-1/8 flex-col">
+            <label for="account"
+                class="form-label inline-block text-xs text-gray-700 font-light py-1 text-left">Account</label>
+            <select
+                class="bg-gray-50 border border-gray-300 text-gray-400 font-light text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                id="account" v-model="selectedAccount" @change="handleAccountFilter">
+                <option value="" selected>No filter applied</option>
+                <option v-for="account in uniqueAccounts" :key="account" :value="account">{{ account }}
+                </option>
+            </select>
+        </div>
+        <div lass="mb-3 w-1/8 flex-col">
+            <label for="start"
+                class="form-label inline-block text-xs text-gray-700 font-light py-1 text-left">Starting
+                month</label>
+            <input class="bg-gray-50 border border-gray-300 text-gray-400 font-light text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2" type="month" id="start" name="starting-month" :value="selectedStartMonth"
+                @change="handleStartDateChange" placeholder="yyyy-mm" min="1980-01" max="2050-12">
+        </div>
+        <div lass="mb-3 w-1/8 flex-col">
+            <label for="end" class="form-label inline-block text-xs text-gray-700 font-light py-1 text-left">Ending
+                month</label>
+            <input class="bg-gray-50 border border-gray-300 text-gray-400 font-light text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2" type="month" id="end" name="ending-month" :value="selectedEndMonth" @change="handleEndDateChange"
+                placeholder="yyyy-mm" min="1980-01" max="2050-12">
+        </div>
     </div>
 </template>
