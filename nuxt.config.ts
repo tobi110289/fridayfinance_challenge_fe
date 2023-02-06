@@ -6,7 +6,7 @@ export default defineNuxtConfig({
         typeCheck: true,
         strict: true,
     },
-    modules: ['@nuxtjs/apollo', '@nuxtjs/tailwindcss'],
+    modules: ['@pinia/nuxt','@nuxtjs/apollo', '@nuxtjs/tailwindcss'],
     apollo: {
         clients: {
             default: {

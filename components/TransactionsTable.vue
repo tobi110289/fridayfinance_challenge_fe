@@ -1,7 +1,14 @@
 <script setup>
 import { formatDateDDMMYY } from '@/helpers/HelperFunctions';
+import { useTransactionStore } from '@/store/TransactionStore';
+
 const { transactionData, loadMore } = inject("transactionData")
+const store = useTransactionStore()
+
 const sortOrder = ref('asc');
+const sortByDate = () => {
+    sortOrder.value = sortOrder.value === 'asc' ? 'desc' : 'asc';
+}
 const sortedTransactions = computed(() => {
     const formatToTimestamp = (date) => (new Date(date)).getTime();
     const transactions = transactionData.value;
@@ -11,10 +18,10 @@ const sortedTransactions = computed(() => {
     return transactions;
 });
 
-const sortByDate = () => {
-    sortOrder.value = sortOrder.value === 'asc' ? 'desc' : 'asc';
+const goToDetail = async (id) => {
+    await store.getDetailData(id)
+    await navigateTo({ path: `/detail/${id}` })
 }
-
 </script>
 
 <template>
@@ -37,7 +44,7 @@ const sortByDate = () => {
             </thead>
             <tbody>
                 <tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100"
-                    v-for="transaction in sortedTransactions" :key="transaction.id">
+                    v-for="transaction in sortedTransactions" :key="transaction.id" @click="goToDetail(transaction.id)">
                     <td :style="{ color: transaction.reference ? '#111827' : '#a0aec0' }"
                         class="text-sm font-light px-6 py-4 whitespace-nowrap">{{
                             transaction.reference ?

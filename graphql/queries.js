@@ -1,9 +1,15 @@
-const initialQuery = gql`
-  query {
-    getTransactions(first: 20) {
+const singleTransactionQueryScheme = gql`
+  query ($id: String) {
+    getTransactions(id: $id) {
       id
+      account {
+        name
+        bank
+
+      }
       reference
       category {
+        id
         name
         color
       }
@@ -53,4 +59,4 @@ const filterQuery = gql`
 `
 
 
-export { initialQuery, loadMoreQuery, accountQueryScheme, filterQuery }
+export { singleTransactionQueryScheme, loadMoreQuery, accountQueryScheme, filterQuery }

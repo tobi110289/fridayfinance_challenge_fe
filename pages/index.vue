@@ -1,6 +1,6 @@
 <script setup>
 import Transactions from "@/pages/Transactions.vue"
-import { loadMoreQuery, accountQueryScheme, filterQuery } from "@/graphql/queries"
+import { loadMoreQuery, accountQueryScheme, filterQuery, singleTransactionQueryScheme } from "@/graphql/queries"
 const transactionData = ref([])
 const accountData = ref([])
 const filterArguments = ref({})
@@ -28,21 +28,18 @@ const transactionQuery = async (query, arg) => {
   const { data } = await useAsyncQuery(query, arg)
   transactionData.value = data._rawValue.getTransactions
 }
-
 const accountQuery = async (query, arg) => {
   const { data } = await useAsyncQuery(query, arg)
   accountData.value = data._rawValue.getAccounts
 }
 
-
 transactionQuery(loadMoreQuery, { first: 20 })
 accountQuery(accountQueryScheme, {})
-
 
 provide('transactionData', { transactionData, loadMore })
 provide('searchbar', { handleSearch, accountData, filteredQuery })
 </script>
 
 <template>
-    <Transactions />
+  <Transactions />
 </template>
