@@ -2,17 +2,20 @@
 import Transactions from "@/pages/Transactions.vue"
 import { loadMoreQuery, accountQueryScheme, filterQuery } from "@/graphql/queries"
 const transactionData = ref([])
-const bankData = ref([])
+const accountData = ref([])
+const filterArguments = ref({})
 
 const handleSearch = (searchValue) => {
   console.log(`search value: ${searchValue}`);
   // Handle the API request here using the searchValue.
 }
 const filteredQuery = (selectedAccount, selectedBank, startDate, endDate) => {
-  transactionQuery(filterQuery, { first: 20, account: selectedAccount, bank: selectedBank, startDate, endDate})
+  const args = { first: transactionData.value.length ? transactionData.value.length : 20, account: selectedAccount, bank: selectedBank, startDate, endDate }
+  transactionQuery(filterQuery, args)
+  filterArguments.value = args;
 }
 const loadMore = () => {
-  transactionQuery(loadMoreQuery, { first: transactionData.value.length + 20 })
+  transactionQuery(filterQuery, { ...filterArguments.value, first: transactionData.value.length + 20 })
 }
 
 const transactionQuery = async (query, arg) => {
@@ -21,7 +24,7 @@ const transactionQuery = async (query, arg) => {
 }
 const accountQuery = async (query, arg) => {
   const { data } = await useAsyncQuery(query, arg)
-  bankData.value = data._rawValue.getAccounts
+  accountData.value = data._rawValue.getAccounts
 }
 
 
@@ -30,7 +33,7 @@ accountQuery(accountQueryScheme, {})
 
 
 provide('transactionData', { transactionData, loadMore })
-provide('searchbar', { handleSearch, bankData, filteredQuery })
+provide('searchbar', { handleSearch, accountData, filteredQuery })
 </script>
 
 <template>

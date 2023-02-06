@@ -1,6 +1,6 @@
 <script setup >
 const searchTerm = ref('')
-const { handleSearch, bankData, filteredQuery } = inject('searchbar')
+const { handleSearch, accountData, filteredQuery } = inject('searchbar')
 const uniqueBanks = ref([])
 const selectedBank = ref('')
 const uniqueAccounts = ref([])
@@ -8,7 +8,7 @@ const selectedAccount = ref('')
 const selectedStartMonth = ref('2017-01')
 const selectedEndMonth = ref('')
 
-watch(bankData, (accounts) => {
+watch(accountData, (accounts) => {
     uniqueBanks.value = Array.from(new Set(accounts.map(account => account.bank)))
     uniqueAccounts.value = Array.from(new Set(accounts.map(account => account.name)))
 })
