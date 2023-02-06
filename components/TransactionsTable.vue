@@ -38,14 +38,15 @@ const sortByDate = () => {
             <tbody>
                 <tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100"
                     v-for="transaction in sortedTransactions" :key="transaction.id">
-                    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{
-                        transaction.reference ?
-                            transaction.reference : "No reference provided"
-                    }}</td>
+                    <td :style="{ color: transaction.reference ? '#111827' : '#a0aec0' }"
+                        class="text-sm font-light px-6 py-4 whitespace-nowrap">{{
+                            transaction.reference ?
+                                transaction.reference : "No reference provided"
+                        }}</td>
                     <td class="text-sm text-gray-900  font-normal px-6 py-4 whitespace-nowrap">
                         <span class="p-3 rounded-md"
                             :style="{ backgroundColor: transaction.category?.color ? '#' + transaction.category?.color : '#ebebeb' }">
-                            {{ transaction.category?.name? transaction.category?.name : "No category provided" }}
+                            {{ transaction.category?.name ? transaction.category?.name : "No category provided" }}
                         </span>
                     </td>
                     <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{
