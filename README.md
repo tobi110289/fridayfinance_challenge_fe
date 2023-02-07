@@ -32,3 +32,13 @@ npm run dev
 5. Refactor remaining functions that interact with API from index into Pinia store
 6. Create more smaller components, like table cells, buttons, etc.
 7. Make it look better ;)
+
+<p align="center">
+<img src="./public/Table.png" alt="Table" style="width: 100%;" />
+</p>
+
+-----------------------------------------------------------------------------------
+
+<p align="center">
+<img src="./public/Detail.png" alt="Table" style="width: 100%;" />
+</p>
