@@ -1,6 +1,5 @@
-# Nuxt 3 Minimal Starter
-
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+# Frontend Coding Challenge
+Nuxt3, Vue3, Pinia, Apollo, TailwindCSS
 
 ## Setup
 
@@ -25,18 +24,11 @@ Start the development server on http://localhost:3000
 npm run dev
 ```
 
-## Production
-
-Build the application for production:
-
-```bash
-npm run build
-```
-
-Locally preview production build:
-
-```bash
-npm run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+## If I had more time I would..
+1. Persist search/filter when navigating back from detail page
+2. Rewrite search to take all edge cases into account
+3. Optimize filter/search when used together
+4. Rewrite the pagination to use the "after" query, only fetching new results not all of them again
+5. Refactor remaining functions that interact with API from index into Pinia store
+6. Create more smaller components, like table cells, buttons, etc.
+7. Make it look better ;)
