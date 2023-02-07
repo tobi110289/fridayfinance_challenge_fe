@@ -16,6 +16,9 @@ npm install
 pnpm install
 ```
 
+Make sure the url in the `nuxt.config` is setup correctly to reach the backend.
+
+
 ## Development Server
 
 Start the development server on http://localhost:3000
