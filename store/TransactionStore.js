@@ -1,7 +1,4 @@
 import {
-  loadMoreQuery,
-  accountQueryScheme,
-  filterQuery,
   singleTransactionQueryScheme,
   categoriesSchema,
   changeCategoryMutation,
@@ -23,7 +20,7 @@ export const useTransactionStore = defineStore("transactions", {
         const { data } = await useAsyncQuery(singleTransactionQueryScheme, {
           id,
         });
-        this.detailData = data._rawValue.getTransactions;
+        this.detailData = data._rawValue.getTransactions[0];
       } catch (error) {
         console.log(error);
       }
@@ -44,12 +41,10 @@ export const useTransactionStore = defineStore("transactions", {
             category_id,
           },
         });
-        console.log("detail1", this.detailData);
         this.detailData = {
           ...this.detailData,
           category: data._rawValue.updateTransactionCategory.category,
         };
-        console.log(this.detailData, "detail2");
       } catch (error) {
         console.log(error);
       }
