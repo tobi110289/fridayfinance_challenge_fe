@@ -1,9 +1,12 @@
 <script setup>
 import Transactions from "@/pages/Transactions.vue"
 import { loadMoreQuery, accountQueryScheme, filterQuery, singleTransactionQueryScheme } from "@/graphql/queries"
+import { useTransactionStore } from '@/store/TransactionStore';
+
 const transactionData = ref([])
 const accountData = ref([])
 const filterArguments = ref({})
+const store = useTransactionStore()
 
 const handleSearch = async (searchValue) => {
   let searchResults = []
@@ -33,8 +36,11 @@ const accountQuery = async (query, arg) => {
   accountData.value = data._rawValue.getAccounts
 }
 
+//INITIAL QUERIES
 transactionQuery(loadMoreQuery, { first: 20 })
 accountQuery(accountQueryScheme, {})
+store.getCategories()
+
 
 provide('transactionData', { transactionData, loadMore })
 provide('searchbar', { handleSearch, accountData, filteredQuery })
