@@ -26,10 +26,12 @@ yarn run dev
 1. Persist search/filter when navigating back from detail page
 2. Rewrite search to take all edge cases into account
 3. Optimize filter/search when used together
-4. Rewrite the pagination to use the "after" query, only fetching new results not all of them again
-5. Refactor remaining functions that interact with API from index into Pinia store
-6. Create more smaller components, like table cells, buttons, etc.
-7. Make it look better ;)
+4. Refactor all pages and components into TypeScript
+5. Write Unit, integration and end-to-end tests
+6. Rewrite the pagination to use the "after" query, only fetching new results not all of them again
+7. Refactor remaining functions that interact with API from index into Pinia store
+8. Create more smaller components, like table cells, buttons, etc.
+9. Make it look better ;)
 
 <p align="center">
 <img src="./public/Table.png" alt="Table" style="width: 100%;" />
