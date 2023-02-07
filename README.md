@@ -6,14 +6,9 @@ Nuxt3, Vue3, Pinia, Apollo, TailwindCSS
 Make sure to install the dependencies:
 
 ```bash
-# yarn
+
 yarn install
 
-# npm
-npm install
-
-# pnpm
-pnpm install
 ```
 
 Make sure the url in the `nuxt.config` is setup correctly to reach the backend.
@@ -24,7 +19,7 @@ Make sure the url in the `nuxt.config` is setup correctly to reach the backend.
 Start the development server on http://localhost:3000
 
 ```bash
-npm run dev
+yarn run dev
 ```
 
 ## If I had more time I would..
